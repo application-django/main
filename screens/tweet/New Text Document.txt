@@ -1,0 +1,215 @@
+                    {header()}
+		<View style={styles.content}>
+		<View style={styles.h}>
+		<TouchableOpacity style={styles.opacity}><Text style={styles.text}>Annuler</Text></TouchableOpacity>
+		<TouchableOpacity style={styles.tweetopacity}><Text style={styles.tweettext}>Tweeter</Text></TouchableOpacity>
+		</View>
+		<TextInput multiline style={[styles.tweet,{backgroundColor:this.state.background}]}/>
+
+
+		<FlatList
+		horizontal
+		data={color}
+		style={styles.list}
+		keyExtractor={(item, index) => index}
+		renderItem={({item})=><TouchableOpacity onPress={()=>update(item)} style={[styles.box,{backgroundColor:item}]}></TouchableOpacity>}
+		/>
+
+
+		<View style={styles.option}>
+		<TouchableOpacity onPress={this.handleCamera} style={styles.voice}><MaterialIcons name='music' size={26} color='grey' /></TouchableOpacity>
+		<TouchableOpacity style={styles.photo}><MaterialIcons name='music' size={26} color='grey' /></TouchableOpacity>
+		<FlatList
+		horizontal
+		data={color}
+		style={styles.ph}
+		keyExtractor={(item, index) => index}
+		renderItem={({item})=><TouchableOpacity onPress={()=>update(item)} style={[styles.box,{backgroundColor:item}]}></TouchableOpacity>}
+		/>
+		</View>
+		</View>
+                   
+                </View>
+            </SafeAreaView>
+        )
+    }
+
+    const header = () => {
+        return (
+            <View style={styles.headerWrapStyle}>
+                <View style={styles.headerLocationInfoWrapStyle}>
+                    <Image
+                        source={require('../../assets/images/users/user1.png')}
+                        style={{ width: 50.0, height: 50.0, borderRadius: 25.0, }}
+                    />
+                    <View style={{ flex: 1, marginLeft: Sizes.fixPadding, }}>
+                        <Text style={{ ...Fonts.whiteColor14Regular }}>
+                            Your Location
+                        </Text>
+                        <Menu
+                            visible={this.state.showLocationOptions}
+                            style={{ paddingVertical: Sizes.fixPadding - 5.0, }}
+                            anchor={
+                                <TouchableOpacity
+                                    activeOpacity={0.9}
+                                    onPress={() => this.setState({ showLocationOptions: true })}
+                                    style={{ flexDirection: 'row', alignItems: 'center', }}
+                                >
+                                    <Text numberOfLines={1} style={{ ...Fonts.whiteColor16SemiBold }}>
+                                        {'hello'}
+                                    </Text>
+                                    <MaterialIcons
+                                        name="arrow-drop-down"
+                                        color={Colors.whiteColor}
+                                        size={24}
+                                        style={{ marginLeft: Sizes.fixPadding - 5.0, }}
+                                    />
+                                </TouchableOpacity>
+                            }
+                            
+                        >
+                           
+                        </Menu>
+                    </View>
+                </View>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <TouchableOpacity
+                        activeOpacity={0.9}
+                        onPress={() => props.navigation.push('MapView')}
+                    >
+                        <Image
+                            source={require('../../assets/images/icons/map.png')}
+                            style={{ width: 20.0, height: 20.0, resizeMode: 'contain' }}
+                        />
+                    </TouchableOpacity>
+                    <Feather
+                        name="search"
+                        size={17}
+                        color={Colors.whiteColor}
+                        style={{ marginLeft: Sizes.fixPadding + 5.0 }}
+                        onPress={() => props.navigation.push('Search')}
+                    />
+                </View>
+            </View>
+        )
+    }
+
+
+
+const styles = StyleSheet.create({
+    headerWrapStyle: {
+        backgroundColor: Colors.primaryColor,
+        borderBottomLeftRadius: Sizes.fixPadding + 5.0,
+        borderBottomRightRadius: Sizes.fixPadding + 5.0,
+        padding: Sizes.fixPadding * 2.0,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between'
+    },
+    headerLocationInfoWrapStyle: {
+        flex: 1,
+        marginRight: Sizes.fixPadding,
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    content: {
+	flex:0.9,
+	marginTop:'auto',
+	marginBottom:'auto',
+ 	borderWidth:0,
+	borderColor:'red',
+},
+tweet:{
+	width:'90%',
+	alignSelf:'center',
+	height:'30%',
+	borderWidth:1,
+	borderColor:Colors.primaryColor,
+	borderRadius:15,
+	fontSize:20,
+},
+opacity:{
+	width:'20%',
+	
+	height:'50%',
+	marginTop:20,
+	borderWidth:0,
+	borderColor:'black',
+	justifyContent:'space-between',
+	alignItems:'center',
+},
+text:{
+	color:Colors.primaryColor,
+	fontWeight:'bold',
+	fontSize:15,
+	marginBottom:0,
+	borderWidth:0,
+
+},
+tweettext:{
+	color:'white',
+	fontWeight:'bold',
+	fontSize:15,
+	marginBottom:0,
+	borderWidth:0,
+},
+tweetopacity:{
+	width:'25%',
+	backgroundColor:Colors.primaryColor,
+	height:'50%',
+	marginTop:20,
+	borderWidth:0,
+	borderColor:'black',
+	borderRadius:20,
+	justifyContent:'space-between',
+	alignItems:'center',
+},
+list:{
+	width:'90%',
+	alignSelf:'center',
+	maxHeight:80,
+	borderWidth:0,
+	marginTop:20,
+},
+box:{
+	width:80,
+	height:80,
+	marginRight:10,
+	
+},
+h:{
+	width:'90%',
+	alignSelf:'center',
+	height:'10%',
+	flexDirection:'row',
+	backgroundColor:'white',
+	marginTop:-10,
+	marginBottom:10,
+	justifyContent:'space-between',
+	alignItems:'center',
+},
+option:{
+	width:'90%',
+	alignSelf:'center',
+	flexDirection:'row',
+	alignItems:'center',
+},
+voice:{
+	width:60,
+	height:60,
+	borderWidth:2,
+	marginRight:10,
+},
+photo:{
+	width:60,
+	height:60,
+	borderWidth:2,
+},
+
+});
+
+TweetScreen.navigationOptions = () => {
+    return {
+        header: () => null,
+    }
+}
