@@ -43,6 +43,7 @@ class RegisterScreen extends Component {
                         {this.registerTitle()}
                         {this.fullNameTextField()}
                         {this.emailTextField()}
+                        {this.statusTextField()}
                         {this.mobileNoTextField()}
                         {this.passwordTextField()}
                         {this.confirmPasswordTextField()}
@@ -143,6 +144,36 @@ class RegisterScreen extends Component {
                         style={{ flex: 1, ...Fonts.blackColor14Regular, marginLeft: Sizes.fixPadding, }}
                         value={this.state.confirmPassword}
                         onChangeText={(text) => this.setState({ confirmPassword: text })}
+                    />
+                </View>
+                <MaterialIcons
+                    name={this.state.secureConfirmPassword ? "visibility-off" : 'visibility'}
+                    color={Colors.grayColor}
+                    size={16}
+                    onPress={() => this.setState({ secureConfirmPassword: !this.state.secureConfirmPassword })}
+                />
+            </View>
+        )
+    }
+
+
+
+statusTextField() {
+        return (
+            <View style={{ ...styles.textFieldWrapStyle, }}>
+                <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                    <MaterialIcons
+                        name="lock"
+                        color={Colors.grayColor}
+                        size={18}
+                    />
+                    <TextInput
+                        secureTextEntry={this.state.secureConfirmPassword}
+                        placeholder="Status"
+                        placeholderTextColor={Colors.grayColor}
+                        style={{ flex: 1, ...Fonts.blackColor14Regular, marginLeft: Sizes.fixPadding, }}
+                        
+                        onChangeText={(text) => this.setState({ status: text })}
                     />
                 </View>
                 <MaterialIcons
